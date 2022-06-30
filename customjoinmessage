@@ -1,0 +1,9 @@
+on join:
+  if player has played before:
+    set join message to "&7[&a+&7] &a%player% &7[&a+&7]"
+  else:
+    set join message to "&aWelcome! %player% Don't Forget to Do &c/rules &aBefore Playing &9Enjoy your stay!"
+
+
+on quit:
+  set quit message to "&c%player% &4left the server :("
