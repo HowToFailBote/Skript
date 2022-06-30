@@ -1,0 +1,22 @@
+command /warn [<offlineplayer>] [<text>]:
+	trigger:
+		if player has permission "warn.give":
+			add skull of arg-1 named "&c&l&nWarning: %arg-1%" with lore "&8* &bWho warned: &c%player%", "&8* &bReason: %colored arg-2%", "" and "&c&lClick to remove warn!" to {warns::*}
+			send "&aYou warned %arg-1%&a!"
+command /warnlist:
+	trigger:
+		if player has permission "warn.list":
+			warns(player)
+function warns(P: player):
+	open chest inventory with 6 rows named "&c&l&nWarnings" to {_P}
+	set {_fill} to -1
+	loop {warns::*}:
+		set {_W} to loop-value
+		add 1 to {_fill}
+		set slot {_fill} of {_P}'s current inventory to {_W}
+on inventory click:
+	if name of player's current inventory contains "&c&l&nWarnings":
+		cancel event
+		if clicked inventory isn't player's inventory:
+			remove event-slot from {warns::*}
+			warns(player)
