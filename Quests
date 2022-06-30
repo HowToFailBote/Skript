@@ -1,0 +1,34 @@
+options:
+	stone: 10
+ 
+command /quests:
+	trigger:
+		quests(player)
+ 
+function quests(P: player):
+	set {_U} to {_P}'s uuid
+	open chest inventory with 1 rows named "&aQuests" to {_P}
+	if {quest::1::%{_U}%} isn't set:
+		set slot 0 of {_P}'s current inventory to stone named "&aMine {@stone} stone!"
+	else:
+		set slot 0 of {_P}'s current inventory to barrier named "&c&l&nLocked"
+on break:
+	if player's held item is any pickaxe:
+		if event-block is stone:
+			add 1 to {quests::stone::%player's uuid%}
+			if {quests::stone::%player's uuid%} = 10:
+				send "&aYou have mined {@stone} stone! You can claim your reward now by doing /quests!"
+on inventory click:
+	cancel event if name of player's current inventory contains "&aQuests"
+	if name of player's current inventory contains "&aQuests":
+		if clicked inventory isn't player's inventory:
+			if index of event-slot is 0:
+				if {quest::1::%player's uuid%} isn't set:
+					if {quests::stone::%player's uuid%} >= {@stone}:
+						set {quest::1::%player's uuid%} to true
+						give player 2 iron ingot
+						send "&aYou claimed your reward!"
+						quests(player)
+					else:
+						close player's inventory
+						send "&cYou need to mind {@stone}! You havnt mined enough yet"
