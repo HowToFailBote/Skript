@@ -1,0 +1,11 @@
+options:
+  p: &7[&cRules&7]
+
+command /rules:
+  permission: Players
+  trigger:
+    send "{@p}: &b1 &aDon't Disrespect Players, Respect Everyone Equal." to player
+    send "{@p}: &b2 &aRespect Staff Don't Disrespect Any Staff Dev Builder etc.." to player
+    send "{@p}: &b3 &aDon't Beg For Items/Stuff Or help to staff members." to player
+    send "{@p}: &b4 &aUse Common Sense Don't talk like psychopath." to player
+    send "{@p}: &b5 &aMore Rules Will Be Added In Future! Have Fun!!" to player
