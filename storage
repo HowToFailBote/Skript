@@ -1,0 +1,46 @@
+#==================================#
+#       Made by HowToFailBote      #
+#==================================#
+
+#Dont edit anything if you dont know what you are doing! And Be aware of any errors
+#contact at my discord HowToFailBote#8597 If found any problem and want any soulution
+ 
+command /storage:
+    trigger:
+        storage(player, 1)  #1 will be the default page we want
+ 
+function storage(P: player, I: int):
+    open chest inventory with 6 rows named "&a&lStorage: %{_I}%" to {_P}
+    set {_var} to -1
+    loop {storage::%{_P}'s uuid%::%uncolored name of {_P}'s current inventory%::*}:
+        add 1 to {_var}
+        set slot {_var} of {_P}'s current inventory to loop-value
+    set slot integers between 45 and 54 of {_P}'s current inventory to black stained glass pane named ""
+    set slot 49 of {_P}'s current inventory to barrier named "&c&lClose"
+    set slot 50 of {_P}'s current inventory to arrow named "&aNext Page"
+    set slot 48 of {_P}'s current inventory to arrow named "&aPrevious Page" if name of {_P}'s current inventory != "&a&lStorage: 1"
+aliases:
+    anti_items = black stained glass pane, arrow, barrier
+on inventory close:
+    if name of player's current inventory contains "&a&lStorage":
+        set {_name} to uncolored name of player's current inventory
+        set {storage::%player's uuid%::%{_name}%::*} to all items in player's current inventory where [input != anti_items]
+ 
+on inventory click:
+    if name of player's current inventory contains "&a&lStorage: ":
+ 
+        set {_var} to uncolored name of player's current inventory
+        replace all "Storage: " with "" in {_var}
+        set {_var} to ({_var} parsed as integer)
+ 
+        if index of event-slot is 49:
+            close player's inventory
+        if index of event-slot is between 45 and 54:
+            cancel event
+        if index of event-slot = 50:
+            add 1 to {_var}
+            storage(player, {_var})
+        if index of event-slot = 48:
+            if name of player's current inventory != "&a&lStorage: 1":
+                remove 1 from {_var}
+                storage(player, {_var})
