@@ -1,0 +1,40 @@
+options:
+   p: &8[&5&lDeveloper&8]
+
+command /developer:
+  trigger:
+    send "&5So you have choosen, developer rank huh?" to player
+    send " " to player
+    wait 50 ticks
+#if 1 tick = 1 mili second 20 ticks = 1 second 40 ticks = 2 seconds
+#50 ticks = 2.50 seconds..
+    send "{@p}: <link:https://docs.google.com/forms/d/1Zvd23dxOLTRLBmHsERq1guDHMLzS5SJ_NXlHyJhWilQ/viewform?edit_requested=true>&5&lClick this message.. and you will be, bought to developer application<reset>" to player
+    wait 50 ticks
+    send " "
+    wait 15 ticks
+    send "&5&lWith this power.." to player
+    send " " to player
+    wait 50 ticks
+    send " " to player
+    send "&rEven &bMinehut &fCan be broken with this.." to player
+    wait 25 ticks
+    send "&cSo you have came this far, Now let me tell you the &0&lsecret It's..." to player
+    send " " to player
+    wait 46 ticks
+    send "..." to player
+    send " " to player
+    wait 10 ticks
+    send "&c&lS" to player
+    wait 10 ticks
+    send "&b&lK" to player
+    wait 10 ticks
+    send "&2&lR" to player
+    wait 10 ticks
+    send "&1&lI" to player
+    wait 10 ticks 
+    send "&a&lP" to player
+    wait 10 ticks
+    send "&9&lT" to player
+    send " "
+    wait 10 ticks
+    send "{@p}: <link:https://www.youtube.com/c/FanStaaff/videos>&c&lClick This &c&lYou&f&ltube &c&llink to, &a&llearn &c&lS&b&lK&2&lR&1&lI&a&lP&9&lT<reset>" to player
